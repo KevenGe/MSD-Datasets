@@ -1,11 +1,16 @@
 # MSD-Datasets
 
-The data will be released after the article has been received.
+The paper has been accepted, and this dataset will be released once it has been finalized.
+
+## TODO
+
+- [ ] Add Introduction
+- [ ] Add Dataset use method
+- [x] Add Citation
 
 ## Citation
 
-Should you find this dataset beneficial to your work, we kindly request that you cite it using the provided BibTeX
-entry.
+Should you find this dataset beneficial to your work, we kindly request that you cite it using the provided BibTeX entry.
 
 ```bibtex
 @article{Ge25082025,
