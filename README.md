@@ -35,7 +35,9 @@ Examples of Multi-Scale Dataset. The content of the subheading is the image reso
 
 ### Download Megadepth
 
-the whole dataset size is (~~~)GB
+There are many versions of this dataset. The version adopted in this study is the one used in DISK.
+
+For the download, you can refer to the official guidelines of [DISK](https://github.com/cvlab-epfl/disk), and please pay close attention to the file [download_dataset](https://github.com/cvlab-epfl/disk/blob/master/download_dataset)。
 
 ### Method 1: Run The Code
 
