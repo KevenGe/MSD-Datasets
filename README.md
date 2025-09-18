@@ -6,13 +6,14 @@ The paper has been accepted, and this dataset will be released once it has been 
 
 - [x] Add Introduction
 - [ ] Add Dataset use method
-    - [ ] Add Python single-thread version
-    - [ ] Add Python multi-thread version
+    - [x] Add Python single-thread version
+    - [x] Add Python multi-thread version
     - [ ] Add C++ single-thread version
     - [ ] Add C++ multi-thread version
 - [ ] Add the generated Datastes
 - [x] Add Citation
 - [ ] (coming soon) Add MSM CODE
+- [ ] Optimize the size of the dataset (Now 146~GB, There is too much repetitive data)
 
 ## Introduction
 
