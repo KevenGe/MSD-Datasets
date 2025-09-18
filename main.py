@@ -326,7 +326,7 @@ def get_pixel_delta(
 
 
 def get_cache_key2(scene_id: str, img1_name: str, img2_name: str) -> str:
-    return f"{scene_id}_{img1_name[:-6]}_{img2_name[:-6]}"
+    return f"{scene_id}/{img1_name[:-6]}_{img2_name[:-6]}"
 
 
 def draw_image_with_points(
@@ -479,6 +479,7 @@ class MegadepthCacheManager:
 
     def set(self, cache_key: str, data: dict[str, Any]) -> None:
         cache_filename = self.cache_dir / (cache_key + ".json")
+        cache_filename.parent.mkdir(parents=True, exist_ok=True)
         with open(cache_filename, "w") as f:
             json.dump({"data": data}, f)
 
@@ -564,18 +565,23 @@ class NewDatasetGenerator:
         对缓存中的JSON文件数值进行计算，并根据数值方法进行分配汇总
 
         """
-        # 缓存路径
-        filepaths = list(Path(".cache").glob("*"))
 
-        # 对于每个JSON文件，打开并进行根据DI进行记录
-        for filepath in tqdm.tqdm(filepaths):
-            with open(filepath, "r") as f:
-                data = json.load(f)
-                self.recoder.record2(data["data"])
+        scene_ids = list(self.data.keys())
 
-        # 展示信息并保存
-        self.recoder.display()
-        self.recoder.save_data()
+        for scene_id in scene_ids:
+
+            # 缓存路径
+            filepaths = list(Path(f".cache/{scene_id}").glob("*"))
+
+            # 对于每个JSON文件，打开并进行根据DI进行记录
+            for filepath in tqdm.tqdm(filepaths):
+                with open(filepath, "r") as f:
+                    data = json.load(f)
+                    self.recoder.record2(data["data"])
+
+            # 展示信息并保存
+            self.recoder.display()
+            self.recoder.save_data(Path(f"{scene_id}.json"))
 
     def run_dataset(self):
         """
@@ -621,6 +627,17 @@ class NewDatasetGenerator:
         pl.close()
         pl.join()
 
+    def run_dataset_mp2(self):
+        """
+        用于生成需要测试的图像对的对应数据
+
+        Returns:
+        """
+        scene_ids = list(self.data.keys())
+        for scene_idx, scene_id in enumerate(scene_ids):
+            logger.info(f"Processing {scene_idx}/{len(scene_ids)}: Scene ID = {scene_id}")
+            self._process_scene_mp2(scene_id)
+            # break
 
     def compute_delta(
             self, image1, depth1, K1, R1, T1, image2, depth2, K2, R2, T2
@@ -700,10 +717,27 @@ class NewDatasetGenerator:
         for tup_idx, tup in enumerate(tuples):
             self._process_tup_exp(scene_id, tup_idx)
 
+    def _process_scene_mp2(self, scene_id: str):
+        scene = self.data[scene_id]
+        tuples = scene["tuples"]
+
+        ct = multiprocessing.cpu_count()
+        ps = []
+        for cti in range(ct):
+            p = multiprocessing.Process(target=self._process_scene_mp2_helper, args=(scene_id, cti, len(tuples), ct))
+            p.start()
+            ps.append(p)
+
+        for p in ps:
+            p.join()
+
+    def _process_scene_mp2_helper(self, scene_id: str, tup_idx_start:int, tup_idx_end:int, tup_idx_step:int):
+        for ti in range(tup_idx_start, tup_idx_end, tup_idx_step):
+            self._process_tup_exp(scene_id, ti)
 
     def _process_tup_exp(self, scene_id: str, tuple_id: int):
         try:
-            f"[SceneID: {scene_id}] [Tup {tuple_id}]"
+            logger.info(f"[SceneID: {scene_id}] [Tup {tuple_id}]")
             self._process_tup(scene_id, tuple_id)
         except Exception as e:
             logger.error(
@@ -786,7 +820,8 @@ def gen_msd(
     md = NewDatasetGenerator(megadepth_path=megadepth_path)
 
     # md.run_dataset()
-    md.run_dataset_mp()
+    # md.run_dataset_mp()
+    # md.run_dataset_mp2()
     md.run_record()
 
 

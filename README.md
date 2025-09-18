@@ -35,11 +35,19 @@ Examples of Multi-Scale Dataset. The content of the subheading is the image reso
 
 ### Download Megadepth
 
-There are many versions of this dataset. The version adopted in this study is the one used in DISK.
+There are many versions of this dataset. The version adopted in this study is the one used in [**DISK**](https://github.com/cvlab-epfl/disk).
 
-For the download, you can refer to the official guidelines of [DISK](https://github.com/cvlab-epfl/disk), and please pay close attention to the file [download_dataset](https://github.com/cvlab-epfl/disk/blob/master/download_dataset)。
+For the download, you can refer to the official guidelines of [**DISK**](https://github.com/cvlab-epfl/disk), and please pay close attention to the file [**download_dataset**](https://github.com/cvlab-epfl/disk/blob/master/download_dataset)。
 
 ### Method 1: Run The Code
+
+To ensure computational stability during data integration (which may involve time-consuming processes), the algorithm automatically creates a `.cache` directory in the current working directory. This stores intermediate results during execution and aggregates the final output files only after all computations complete.
+
+⚠️ **Important**: The `.cache` directory is not automatically cleaned up after execution. Users must manually delete this directory to avoid unnecessary disk space usage.
+
+```python
+python ./main.py --dataset_path=/path/to/megadepth
+```
 
 ### Method 2: The Generated Dataset Based On Megadepth
 
@@ -50,6 +58,64 @@ If it's not convenient for you to generate the dataset yourself through code, we
 - GitHub Release: (Coming Soon)
 
 ### Analysis of the dataset file format
+
+For `.cache` directory, the file format is as follows:
+
+```text
+├─.cache                                                    # cache directory
+│  ├─0001                                                   # scene ID
+│  │  ├─5008984_74a994ce1c_62638625_7283cc3777.json         # cache file           
+│  │  ├─5008984_74a994ce1c_534552203_52c5f133f0.json        # cache file     
+│  │  ├─5008984_74a994ce1c_883453033_cc28e4b2a9             # cache file     
+│  │  ├─......
+│  ├─0004
+│  ├─0005
+│  ├─0007
+│  ├─.....
+```
+
+For cache file, the file format is as follows:
+
+```json
+{
+  "data": {
+    "img1_path": "scenes/0001/images/5008984_74a994ce1c_o.jpg",
+    "img1_depth_path": "scenes/0001/depth_maps/5008984_74a994ce1c_o.h5",
+    "img1_calib_path": "scenes/0001/calibration/calibration_5008984_74a994ce1c_o.jpg.h5",
+    "img2_path": "scenes/0001/images/62638625_7283cc3777_o.jpg",
+    "img2_depth_path": "scenes/0001/depth_maps/62638625_7283cc3777_o.h5",
+    "img2_calib_path": "scenes/0001/calibration/calibration_62638625_7283cc3777_o.jpg.h5",
+    "ADI": 0.594368945806114,
+    "PDI": 0.24401540959600815,
+    "SDI": 0.8383843554021222
+  }
+}
+```
+
+For the result
+
+```json
+{
+  "ADI": {
+    "Low": [],
+    "Medium": [],
+    "High": [],
+    "Ultra": []
+  },
+  "PDI": {
+    "Low": [],
+    "Medium": [],
+    "High": [],
+    "Ultra": []
+  },
+  "SDI": {
+    "Low": [],
+    "Medium": [],
+    "High": [],
+    "Ultra": []
+  }
+}
+```
 
 ## FAQ
 
