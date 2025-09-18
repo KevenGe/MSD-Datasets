@@ -1,3 +1,8 @@
 # project
 .idea
 .vscode
+
+# cache
+.cache
+*.json
+*.zip
