@@ -17,23 +17,16 @@ The paper has been accepted, and this dataset will be released once it has been 
 
 ## Introduction
 
-Due to the lack of scale-related analysis in the existing datasets in the field of feature matching, this has to some
-extent affected the research or evaluation of feature matching algorithms for scale differences. For this purpose, we
-have proposed the **Scale Difference Index (SDI)** to describe scale differences, which can be derived respectively from
-the **Angle Difference Index (ADI)** and the **pixel Difference Index (PDI)**. Then, we constructed a **Multi-Scale
-Dataset (MSD)** based on SDI.
+Due to the lack of scale-related analysis in the existing datasets in the field of feature matching, this has to some extent affected the research or evaluation of feature matching algorithms for scale differences. For this purpose, we have proposed the **Scale Difference Index (SDI)** to describe scale differences, which can be derived respectively from the **Angle Difference Index (ADI)** and the **pixel Difference Index (PDI)**. Then, we constructed a **Multi-Scale Dataset (MSD)** based on SDI.
 
 The MSD comprises two components.
 
-1. The first is a scale-difference dataset based on the existing Megadepth (Li and Snavely Citation2018) dataset. It
-   offers the advantage of a large amount of data and images that are very close to nature.
-2. The second was a self-constructed scale-difference dataset based on remote sensing imagery from UAVs. It offers the
-   advantage of very clear images, which are suitable for research in remote sensing from UAVs and other areas.
+1. The first is a scale-difference dataset based on the existing Megadepth (Li and Snavely Citation2018) dataset. It offers the advantage of a large amount of data and images that are very close to nature.
+2. The second was a self-constructed scale-difference dataset based on remote sensing imagery from UAVs. It offers the advantage of very clear images, which are suitable for research in remote sensing from UAVs and other areas.
 
 The main function of this repository is to provide the MSD-Dataset based on MegaDepth.
 
-For more details, please check [**Paper section 5
-**](https://www.tandfonline.com/doi/full/10.1080/17538947.2025.2543562#d1e4493).
+For more details, please check [**Paper section 5**](https://www.tandfonline.com/doi/full/10.1080/17538947.2025.2543562#d1e4493).
 
 ![img](./Docs/assets/figure_5.jpeg)
 
@@ -56,7 +49,7 @@ To ensure computational stability during data integration (which may involve tim
 1. **Clone this project**
 
 ```bash
-git@github.com:KevenGe/MSD-Datasets.git
+git clone git@github.com:KevenGe/MSD-Datasets.git
 ```
 
 2. **Configure the Python environment properly.** 
