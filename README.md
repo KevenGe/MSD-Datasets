@@ -2,6 +2,10 @@
 
 The paper has been accepted, and this dataset will be released once it has been finalized.
 
+## News
+
+- The version **v0.1.0** has been released. There might be many imperfections in the project, but I will keep improving it.
+
 ## TODO
 
 - [x] Add Introduction
