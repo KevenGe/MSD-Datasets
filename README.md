@@ -76,7 +76,7 @@ Then you will see the MSD-Dataset json file.
 
 If it's not convenient for you to generate the dataset yourself through code, we also provide pre-calculated datasets, which can help you use them more quickly.
 
-- Baidu Yun: (Coming Soon)
+- Baidu Yun: https://pan.baidu.com/s/1YDU92yX69yWI3YGV8tDxcA?pwd=8ki4
 - Google Drive: (Coming Soon)
 - GitHub Release: (Coming Soon)
 
