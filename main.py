@@ -821,7 +821,7 @@ def gen_msd(
 
     # md.run_dataset()
     # md.run_dataset_mp()
-    # md.run_dataset_mp2()
+    md.run_dataset_mp2()
     md.run_record()
 
 
