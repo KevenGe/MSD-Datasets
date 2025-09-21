@@ -2,20 +2,21 @@
 
 ## News
 
+- **v0.1.1**: Fix some bugs.
 - The version **v0.1.0** has been released. There might be many imperfections in the project, but I will keep improving it.
 
 ## TODO
 
 - [x] Add Introduction
 - [ ] Add Dataset use method
-    - [x] Add Python single-thread version
-    - [x] Add Python multi-thread version
-    - [ ] Add C++ single-thread version
-    - [ ] Add C++ multi-thread version
+  - [x] Add Python single-thread version
+  - [x] Add Python multi-thread version
+  - [ ] Add C++ single-thread version
+  - [ ] Add C++ multi-thread version
 - [ ] Add the generated Datastes
 - [x] Add Citation
 - [ ] (coming soon) Add MSM CODE
-- [ ] Optimize the size of the dataset (Now 146~GB, There is too much repetitive data)
+- [ ] Optimize the size of the dataset (Now 224~MB after zip)
 
 ## Introduction
 
@@ -54,16 +55,20 @@ To ensure computational stability during data integration (which may involve tim
 git clone git@github.com:KevenGe/MSD-Datasets.git
 ```
 
-2. **Configure the Python environment properly.** 
+2. **Configure the Python environment properly.**
 
-This project uses [uv](https://github.com/astral-sh/uv) to manage the package environment. Therefore, after you configure the [uv](https://github.com/astral-sh/uv) environment, you only need 
+This project uses [uv](https://github.com/astral-sh/uv) to manage the package environment. Therefore, after you configure the [uv](https://github.com/astral-sh/uv) environment, you only need
+
 ```bash
 uv sync
 ```
-to reproduce the environment of this project and activate it through 
+
+to reproduce the environment of this project and activate it through
+
 ```bash
 .venv\Scripts\activate
 ```
+
 3. **Execute the code**
 
 Then just run
@@ -78,7 +83,7 @@ Then you will see the MSD-Dataset json file.
 
 If it's not convenient for you to generate the dataset yourself through code, we also provide pre-calculated datasets, which can help you use them more quickly.
 
-- Baidu Yun: https://pan.baidu.com/s/1YDU92yX69yWI3YGV8tDxcA?pwd=8ki4
+- Baidu Yun: <https://pan.baidu.com/s/1UUh1-EYY6F62WPc-sV9_TA?pwd=24sz>
 - Google Drive: (Coming Soon)
 - GitHub Release: (Coming Soon)
 
