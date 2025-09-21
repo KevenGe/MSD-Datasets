@@ -497,19 +497,7 @@ class MegadepthCacheManager:
 
 class MegadepthRecoder:
     def __init__(self):
-        # ?
-        self.data = {
-            "ADI": {"low": 0, "medium": 0, "high": 0, "ultra": 0},
-            "PDI": {"low": 0, "medium": 0, "high": 0, "ultra": 0},
-            "SDI": {"low": 0, "medium": 0, "high": 0, "ultra": 0},
-        }
-
-        # ?
-        self.data2 = {
-            "ADI": {"Low": [], "Medium": [], "High": [], "Ultra": []},
-            "PDI": {"Low": [], "Medium": [], "High": [], "Ultra": []},
-            "SDI": {"Low": [], "Medium": [], "High": [], "Ultra": []},
-        }
+        self.reset()
 
     def record2(self, data: dict[str, Any]) -> None:
         def sub_record(DI_type: Literal["ADI", "PDI", "SDI"], DI: float) -> None:
@@ -540,6 +528,20 @@ class MegadepthRecoder:
         with open(data_path, "w") as f:
             json.dump(self.data2, f)
 
+    def reset(self):
+        self.data = {
+            "ADI": {"low": 0, "medium": 0, "high": 0, "ultra": 0},
+            "PDI": {"low": 0, "medium": 0, "high": 0, "ultra": 0},
+            "SDI": {"low": 0, "medium": 0, "high": 0, "ultra": 0},
+        }
+
+        # ?
+        self.data2 = {
+            "ADI": {"Low": [], "Medium": [], "High": [], "Ultra": []},
+            "PDI": {"Low": [], "Medium": [], "High": [], "Ultra": []},
+            "SDI": {"Low": [], "Medium": [], "High": [], "Ultra": []},
+        }
+
 
 class NewDatasetGenerator:
     def __init__(self, megadepth_path: Path):
@@ -563,7 +565,6 @@ class NewDatasetGenerator:
     def run_record(self):
         """
         对缓存中的JSON文件数值进行计算，并根据数值方法进行分配汇总
-
         """
 
         scene_ids = list(self.data.keys())
@@ -572,6 +573,8 @@ class NewDatasetGenerator:
 
             # 缓存路径
             filepaths = list(Path(f".cache/{scene_id}").glob("*"))
+
+            self.recoder.reset()
 
             # 对于每个JSON文件，打开并进行根据DI进行记录
             for filepath in tqdm.tqdm(filepaths):
