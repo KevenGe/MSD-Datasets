@@ -1,7 +1,5 @@
 # MSD-Datasets
 
-The paper has been accepted, and this dataset will be released once it has been finalized.
-
 ## News
 
 - **v0.1.1**: Fix some bugs.
