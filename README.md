@@ -60,6 +60,7 @@ git clone git@github.com:KevenGe/MSD-Datasets.git
 This project uses [uv](https://github.com/astral-sh/uv) to manage the package environment. Therefore, after you configure the [uv](https://github.com/astral-sh/uv) environment, you only need
 
 ```bash
+cd ./code/python
 uv sync
 ```
 
